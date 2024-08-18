@@ -1,22 +1,33 @@
-NUMBER GUESSING GAME
+import random
 
-A simple number guessing game written in Python. The program generates a random number between 0 and a user-defined upper limit.
-The player then tries to guess the number, and the game provides feedback on whether the guess is correct or not. 
-The game continues until the correct number is guessed, and the total number of guesses is displayed.
+top_of_range = input("Type a number: ")
 
-Features:
+if top_of_range.isdigit():
+    top_of_range = int(top_of_range)
+  
+    if top_of_range <= 0:
+      print('Please type a number larger than 0 next time.')
+      quit()
+else:
+  print('Please type a number next time.')
+  quit()
 
-1. Prompts the user for a number to set the range.
-2. Validates user input to ensure it's a positive integer.
-3. Provides feedback on each guess.
-4. Displays the total number of guesses once the correct number is guessed.
+random_number = random.randint(0, top_of_range)
+guesses = 0
 
-Usage:
+while True:
+   guesses += 1
+   user_guess = input("Make a guess: ")
+   if user_guess.isdigit():
+       user_guess = int(user_guess)
+   else:
+      print('Please type a number next time.')
+      continue
+   
+   if user_guess == random_number:
+      print("You Got it!")
+      break
+   else:
+      print("You Got it Wrong!")
 
-->Run the script.
-->Enter a number to define the upper limit of the guessing range.
-->Make guesses until you guess the correct number.
-
-Requirements:
-
-Python 3.x
+print("You got it in", guesses, "guesses")
